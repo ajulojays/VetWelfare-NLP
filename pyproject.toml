@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "vetwelfare-nlp"
-version = "0.2.0"
+version = "0.3.0"
 description = "Evidence-grounded NLP for Five-Domains animal-welfare signal extraction"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -21,6 +21,7 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = ["pytest>=8", "ruff>=0.5", "build>=1.2", "twine>=5.0"]
+annotator = ["streamlit>=1.40"]
 transformers = [
   "torch>=2.2",
   "transformers>=4.48",
@@ -32,6 +33,7 @@ transformers = [
   "wandb>=0.18",
 ]
 all = [
+  "streamlit>=1.40",
   "torch>=2.2",
   "transformers>=4.48",
   "datasets>=3.0",
@@ -55,6 +57,7 @@ vetwelfare-prepare-annotation = "vetwelfare_nlp.prepare_annotation:main"
 vetwelfare-download-models = "vetwelfare_nlp.download_models:main"
 vetwelfare-train-baseline = "vetwelfare_nlp.train_baseline:main"
 vetwelfare-train-transformer = "vetwelfare_nlp.train_transformer:main"
+vetwelfare-annotate = "vetwelfare_nlp.launch_annotator:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
