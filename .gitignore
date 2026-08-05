@@ -4,8 +4,28 @@ __pycache__/
 .pytest_cache/
 .ruff_cache/
 *.egg-info/
+build/
+dist/
+
+# Licensed or derived data
 data/raw/
 data/processed/
+data/annotation/*.csv
+data/annotation/*.parquet
+
+# Model weights and experiment outputs
 models/
+artifacts/
 outputs/
+wandb/
+checkpoints/
+
+# Secrets and local configuration
 .env
+.env.*
+*.token
+
+# OS metadata
+.DS_Store
+Thumbs.db
+*:Zone.Identifier
