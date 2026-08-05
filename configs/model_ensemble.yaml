@@ -1,0 +1,40 @@
+study_name: vetwelfare_five_model_prefill_v1
+prompt_version: five_domains_v1
+temperature: 0.0
+max_output_tokens: 1200
+models:
+  - id: gemma4_12b
+    family: Gemma 4 12B Unified
+    provider: openai_compatible
+    model: gemma-4-12b-unified
+    base_url_env: GEMMA_API_BASE
+    api_key_env: GEMMA_API_KEY
+  - id: mistral_small4
+    family: Mistral Small 4
+    provider: openai_compatible
+    model: mistral-small-4
+    base_url_env: MISTRAL_API_BASE
+    api_key_env: MISTRAL_API_KEY
+  - id: llama4_scout
+    family: Llama 4 Scout
+    provider: openai_compatible
+    model: llama-4-scout
+    base_url_env: LLAMA_API_BASE
+    api_key_env: LLAMA_API_KEY
+  - id: qwen36_plus
+    family: Qwen 3.6 Plus
+    provider: openai_compatible
+    model: qwen3.6-plus
+    base_url_env: QWEN_API_BASE
+    api_key_env: QWEN_API_KEY
+  - id: medgemma15_4b
+    family: MedGemma 1.5 4B
+    provider: openai_compatible
+    model: medgemma-1.5-4b-it
+    base_url_env: MEDGEMMA_API_BASE
+    api_key_env: MEDGEMMA_API_KEY
+
+# Replace endpoint model names with the exact identifiers exposed by your
+# institution-controlled vLLM/TGI servers or approved API providers.
+# Do not send gated veterinary records to third-party APIs unless the dataset
+# license, institutional governance, and data-use agreement explicitly permit it.
