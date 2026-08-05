@@ -1,0 +1,1 @@
+"""Collaborative annotation platform components."""
