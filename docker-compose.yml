@@ -1,0 +1,56 @@
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: vetwelfare
+      POSTGRES_USER: vetwelfare
+      POSTGRES_PASSWORD: vetwelfare
+    ports:
+      - "5432:5432"
+    volumes:
+      - vetwelfare_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U vetwelfare -d vetwelfare"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  api:
+    build: .
+    command: uvicorn vetwelfare_nlp.platform.api:app --host 0.0.0.0 --port 8000 --reload
+    environment:
+      DATABASE_URL: postgresql+psycopg://vetwelfare:vetwelfare@db:5432/vetwelfare
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    depends_on:
+      db:
+        condition: service_healthy
+
+  annotator:
+    build: .
+    command: streamlit run src/vetwelfare_nlp/platform/annotator_app.py --server.address 0.0.0.0
+    environment:
+      VETWELFARE_API_URL: http://api:8000
+    ports:
+      - "8501:8501"
+    volumes:
+      - .:/app
+    depends_on:
+      - api
+
+  adjudicator:
+    build: .
+    command: streamlit run src/vetwelfare_nlp/platform/adjudication_app.py --server.address 0.0.0.0 --server.port 8502
+    environment:
+      VETWELFARE_API_URL: http://api:8000
+    ports:
+      - "8502:8502"
+    volumes:
+      - .:/app
+    depends_on:
+      - api
+
+volumes:
+  vetwelfare_pgdata:
