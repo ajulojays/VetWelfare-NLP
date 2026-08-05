@@ -50,6 +50,7 @@ all = [
 vetwelfare = "vetwelfare_nlp.cli:main"
 vetwelfare-fetch = "vetwelfare_nlp.fetch_dataset:main"
 vetwelfare-audit = "vetwelfare_nlp.audit_dataset:main"
+vetwelfare-sample-annotation = "vetwelfare_nlp.sample_annotation:main"
 vetwelfare-prepare-annotation = "vetwelfare_nlp.prepare_annotation:main"
 vetwelfare-download-models = "vetwelfare_nlp.download_models:main"
 vetwelfare-train-baseline = "vetwelfare_nlp.train_baseline:main"
