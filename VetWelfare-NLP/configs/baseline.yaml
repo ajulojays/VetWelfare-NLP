@@ -1,0 +1,13 @@
+project: VetWelfare-NLP
+framework: five_domains_2020
+prediction_targets:
+  - nutrition
+  - physical_environment
+  - health
+  - behavioural_interactions
+mental_state:
+  hierarchical: true
+  allow_abstention: true
+evaluation:
+  split: clinic_held_out
+  primary_metric: macro_f1

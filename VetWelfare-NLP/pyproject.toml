@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "vetwelfare-nlp"
+version = "0.1.0"
+description = "Explainable NLP for Five-Domains animal-welfare signal extraction"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [{name = "Samuel O. Ajulo"}]
+dependencies = ["click>=8.1", "pandas>=2.0"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "ruff>=0.5"]
+ml = ["scikit-learn>=1.4", "transformers>=4.44", "datasets>=2.20", "torch>=2.2"]
+
+[project.scripts]
+vetwelfare = "vetwelfare_nlp.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
