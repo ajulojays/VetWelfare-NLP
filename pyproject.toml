@@ -4,23 +4,61 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "vetwelfare-nlp"
-version = "0.1.0"
-description = "Explainable NLP for Five-Domains animal-welfare signal extraction"
+version = "0.2.0"
+description = "Evidence-grounded NLP for Five-Domains animal-welfare signal extraction"
 readme = "README.md"
 requires-python = ">=3.10"
 license = {text = "MIT"}
 authors = [{name = "Samuel O. Ajulo"}]
-dependencies = ["click>=8.1", "pandas>=2.0"]
+dependencies = [
+  "click>=8.1",
+  "pandas>=2.0",
+  "numpy>=1.26",
+  "pyyaml>=6.0",
+  "scikit-learn>=1.4",
+  "joblib>=1.3",
+]
 
 [project.optional-dependencies]
-dev = ["pytest>=8", "ruff>=0.5"]
-ml = ["scikit-learn>=1.4", "transformers>=4.44", "datasets>=2.20", "torch>=2.2"]
+dev = ["pytest>=8", "ruff>=0.5", "build>=1.2", "twine>=5.0"]
+transformers = [
+  "torch>=2.2",
+  "transformers>=4.48",
+  "datasets>=3.0",
+  "accelerate>=1.0",
+  "evaluate>=0.4",
+  "huggingface-hub>=0.27",
+  "safetensors>=0.4",
+  "wandb>=0.18",
+]
+all = [
+  "torch>=2.2",
+  "transformers>=4.48",
+  "datasets>=3.0",
+  "accelerate>=1.0",
+  "evaluate>=0.4",
+  "huggingface-hub>=0.27",
+  "safetensors>=0.4",
+  "wandb>=0.18",
+  "pytest>=8",
+  "ruff>=0.5",
+  "build>=1.2",
+  "twine>=5.0",
+]
 
 [project.scripts]
 vetwelfare = "vetwelfare_nlp.cli:main"
+vetwelfare-fetch = "vetwelfare_nlp.fetch_dataset:main"
+vetwelfare-download-models = "vetwelfare_nlp.download_models:main"
+vetwelfare-train-baseline = "vetwelfare_nlp.train_baseline:main"
+vetwelfare-train-transformer = "vetwelfare_nlp.train_transformer:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
 
 [tool.pytest.ini_options]
 pythonpath = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
