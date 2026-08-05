@@ -30,6 +30,25 @@ EVIDENCE_FIELDS = [
     "mental_state_evidence",
 ]
 
+# Function words add little semantic value to short evidence-span overlap and can
+# make reordered but equivalent phrases appear artificially different.
+EVIDENCE_STOPWORDS = {
+    "a",
+    "an",
+    "and",
+    "at",
+    "by",
+    "for",
+    "from",
+    "in",
+    "of",
+    "on",
+    "or",
+    "the",
+    "to",
+    "with",
+}
+
 
 def _stable_blind_id(model_id: str, salt: str) -> str:
     digest = hashlib.sha256(f"{salt}:{model_id}".encode("utf-8")).hexdigest()[:8]
@@ -54,7 +73,13 @@ def _tokenize_evidence(value: Any) -> set[str]:
         text = " ".join(str(x) for x in value)
     else:
         text = str(value)
-    return {token.strip(".,;:!?()[]{}\"'").lower() for token in text.split() if token.strip()}
+
+    tokens: set[str] = set()
+    for raw_token in text.split():
+        token = raw_token.strip(".,;:!?()[]{}\"'").lower()
+        if token and token not in EVIDENCE_STOPWORDS:
+            tokens.add(token)
+    return tokens
 
 
 def _jaccard(a: set[str], b: set[str]) -> float:
@@ -240,7 +265,7 @@ def main(predictions: Path, output_dir: Path, blind_salt: str, min_models: int) 
 
     summary = {
         "framework": "VetJudge",
-        "version": "0.1.0",
+        "version": "0.1.1",
         "cases": int(cases["case_id"].nunique()),
         "successful_predictions": int(len(frame)),
         "blinded_models": sorted(frame["blind_model_id"].unique().tolist()),
