@@ -1,0 +1,38 @@
+organization: VetAI-Lab
+mission: >-
+  Build open, governed, interoperable infrastructure for veterinary data curation,
+  annotation, benchmarking, foundation models, and clinical and diagnostic AI innovation.
+repositories:
+  - name: .github
+    description: Shared organization profile, governance, templates, security, and community standards.
+    visibility: public
+  - name: docs
+    description: Ecosystem architecture, governance, roadmaps, partnership materials, and shared documentation.
+    visibility: public
+  - name: VetAnnotate
+    description: Collaborative veterinary annotation, assignment, review, and adjudication platform.
+    visibility: public
+  - name: VetJudge
+    description: Model-agnostic ensemble agreement and human-review prioritization framework for veterinary AI annotation.
+    visibility: public
+  - name: VetBench
+    description: Standardized veterinary AI datasets, tasks, metrics, baselines, and leaderboards.
+    visibility: public
+  - name: VetHub
+    description: Federated veterinary data catalog, metadata standards, governance, and institutional dataset discovery.
+    visibility: public
+  - name: VetFM
+    description: Shared veterinary foundation-model infrastructure and pretrained model family.
+    visibility: public
+  - name: VetWelfare-NLP
+    description: Five-Domains animal-welfare reasoning from veterinary clinical narratives.
+    visibility: public
+  - name: ParasiteFM
+    description: Veterinary parasitology microscopy and diagnostic-image foundation models.
+    visibility: public
+  - name: VetPathFM
+    description: Veterinary pathology, cytology, and histopathology foundation models.
+    visibility: public
+  - name: VetGenomeFM
+    description: Veterinary genomics, pathogen, AMR, and sequence foundation models.
+    visibility: public
