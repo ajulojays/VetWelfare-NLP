@@ -1,4 +1,10 @@
 services:
+  website:
+    build: ./website
+    ports:
+      - "8080:80"
+    restart: unless-stopped
+
   db:
     image: postgres:16-alpine
     environment:
